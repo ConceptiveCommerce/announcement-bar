@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Conceptive_Announcementbar::view" title="Announcement Bar" module="Conceptive_Announcementbar" sortOrder="50" resource="Conceptive_Announcementbar::view"/>
+        <add id="Conceptive_Announcementbar::menu" title="Table" module="Conceptive_Announcementbar" sortOrder="20" parent="Conceptive_Announcementbar::view" action="announcementbar/index/index" resource="Conceptive_Announcementbar::menu"/>
+        <add id="Conceptive_Announcementbar::config" title="Configurations" module="Conceptive_Announcementbar" sortOrder="20" parent="Conceptive_Announcementbar::view" action="admin/system_config/edit/section/section_id" resource="Conceptive_Announcementbar::menu"/>
+    </menu>
+</config>

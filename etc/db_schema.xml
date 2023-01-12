@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="cc_announcementbar" resource="default" engine="innodb" comment="Cc Announcementbar">
+      <column xsi:type="int" name="bar_id" padding="7" unsigned="true" nullable="false" identity="true" comment="Bar ID" />
+      <column xsi:type="varchar" name="bar_title" nullable="false" length="255" comment="Bar Title" />
+      <column xsi:type="varchar" name="product_link" nullable="false" length="255" comment="Product Link" />
+      <column xsi:type="smallint" name="status" nullable="false" comment="Status" />
+      <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="bar_id" />
+      </constraint>
+   </table>
+</schema>

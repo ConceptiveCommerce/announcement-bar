@@ -1,0 +1,171 @@
+<?php
+$module = $block->getConfigValue("general_settings", "field_id");
+$position =  $block->getConfigValue("design_settings", "position");
+if ($module == 1 && $position == "Bottom") { ?>
+        <div class="slidercontainer">
+            <?php
+            $collections = $block->getNoticeContent();
+            $module = $block->getConfigValue("general_settings", "field_id");
+            $tab = $block->getConfigValue("general_settings", "field");
+            $bgColor = $block->getConfigValue("design_settings", "bg_color");
+            $textColor =  $block->getConfigValue("design_settings", "text_color");
+            $linkColor =  $block->getConfigValue("design_settings", "link_color");
+            $fontSize =  $block->getConfigValue("design_settings", "font_size");
+
+            foreach ($collections as $collection) {
+                if ($collection->getStatus() == '1') {
+                    $title = $collection->getBarTitle();
+                    $link = $collection->getProductLink();
+                    if ($tab == 1) { ?>
+                        <a href=<?= $link ?> target='_blank'>
+                            <div class="showSlide fade">
+                                <?php
+                                echo "<p class ='font'>" . $title . "</p>";
+                                ?>
+                            </div>
+                        </a>
+                    <?php
+                    } else { ?>
+                        <a href=<?= $link ?> target='_self'>
+                            <div class="showSlide fade">
+                                <?php
+                                echo "<p class ='font'>" . $title . "</p>";
+                                ?>
+                            </div>
+                        </a>
+            <?php }
+                }
+            }
+            ?>
+            <a class="left" onclick="nextSlide(-1)">❮</a>
+            <a class="right" onclick="nextSlide(1)">❯</a>
+        </div>
+        <script type="text/javascript">
+            var slide_index = 1;
+            displaySlides(slide_index);
+
+            function nextSlide(n) {
+                displaySlides(slide_index += n);
+            }
+
+            function currentSlide(n) {
+                displaySlides(slide_index = n);
+            }
+
+            function displaySlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("showSlide");
+                if (n > slides.length) {
+                    slide_index = 1
+                }
+                if (n < 1) {
+                    slide_index = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[slide_index - 1].style.display = "block";
+            }
+        </script>
+        <style type="text/css">
+            .footer.content {
+                padding: 20px 0px 150px 0px;
+            }
+
+            .copyright {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+
+            .slidercontainer {
+                margin: 10px 0px 40px 0px;
+                background-color: <?php echo $bgColor; ?>;
+                padding: 0px;
+                width: 100%;
+                z-index: 50;
+                height: auto;
+                position: fixed;
+                <?php echo $position; ?>: 0;
+                left: 0;
+                right: 0;
+            }
+
+            .showSlide {
+                display: none;
+
+            }
+
+            .showSlide p {
+                font-size: <?php echo $fontSize; ?>;
+                color: <?php echo $textColor; ?>;
+                text-align: center;
+                margin: 20px 0px;
+            }
+
+            .showSlide a {
+                color: <?php echo $linkColor; ?>;
+            }
+
+            .left,
+            .right {
+                cursor: pointer;
+                position: absolute;
+                top: 25%;
+                width: auto;
+                padding: 5px 16px;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                transition: 0.6s ease;
+                border-radius: 0 3px 3px 0;
+            }
+
+            .right {
+                right: 0;
+                border-radius: 3px 0 0 3px;
+            }
+
+            .left:hover,
+            .right:hover {
+                background-color: rgba(115, 115, 115, 0.8);
+            }
+
+            .active {
+                background-color: #717171;
+            }
+
+            .slidercontainer a:hover {
+                text-decoration: none;
+            }
+
+            /* Fading animation */
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 2.5s;
+                animation-name: fade;
+                animation-duration: 2.5s;
+            }
+
+            @-webkit-keyframes fade {
+                from {
+                    opacity: 0.4
+                }
+
+                to {
+                    opacity: 1
+                }
+            }
+
+            @keyframes fade {
+                from {
+                    opacity: 0.4
+                }
+
+                to {
+                    opacity: 1
+                }
+            }
+        </style>
+    <?php } ?>
